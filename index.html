@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="css.css">
+  <script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
+
+  <title>Frontend Mentor | Intro component with sign up form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+</head>
+<body>
+
+ 
+<main> 
+  <section class="left">
+    <h1>Learn to code by watching others</h1>
+    <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great but understanding how developers think is invaluable. </p>
+  </section>
+  <section class="right">
+    <h2><span>Try it free 7 days</span>&nbspthen $20/mo. thereafter</h2>
+    <form action="">
+      <input type="text" id="first-name" placeholder="First Name" name="first-name">
+      <span id="span-first-name" class="hidden">First Name cannnot be empty</span>
+      <input type="text" id="last-name" placeholder="Last Name" name="last-name">
+      <span id="span-last-name" class="hidden">Last Name cannnot be empty</span>
+      <input type="text" id="email" placeholder="Email Address" name="email">
+      <span id="span-email" class="hidden">Looks like this is not an email</span>
+      <input type="text" id="password" placeholder="Password" name="password">
+      <span id="span-password" class="hidden">Password cannot be empty</span>
+      <button type="submit" id="btn-submit">Claim your free trial </button>
+      <p>By clicking the button, you are agreeing to our <span>Terms and Services</span></p>
+    </form>
+  </section>
+</main> 
+</body>
+</html>
+
+
+<script>
+  $(document).ready(function() {
+    $('#btn-submit').click(function(event) {
+        event.preventDefault();
+
+          var firstName = $("#first-name");
+          var lastName = $("#last-name");
+          var email = $("#email");
+          var password = $("#password");
+          
+          if(firstName.val() == ""){
+              $("#span-first-name").removeClass('hidden');
+              $("#span-first-name").addClass('unhide');
+              $("#first-name").addClass("input-alert");
+            }else{
+              if(firstName.val()!=""){
+                $("#span-first-name").removeClass('unhide');
+                $("#span-first-name").addClass('hidden');
+                if(firstName.hasClass('input-alert')){
+                  firstName.removeClass("input-alert");
+              }
+            }
+          }
+
+          if(lastName.val() == ""){
+              $("#span-last-name").removeClass('hidden');
+              $("#span-last-name").addClass('unhide');
+              $("#last-name").addClass("input-alert");
+            }else{
+              if(lastName.val()!=""){
+                $("#span-last-name").removeClass('unhide');
+                $("#span-last-name").addClass('hidden');
+                if(lastName.hasClass('input-alert')){
+                  lastName.removeClass("input-alert");
+              }
+            }
+          }
+
+          if(email.val() == ""){
+              $("#span-email").removeClass('hidden');
+              $("#span-email").addClass('unhide');
+              $("#email").addClass("input-alert");
+            }else{
+              if(email.val()!=""){
+                if(validateEmail(email.val())){
+                  $("#span-email").removeClass('unhide');
+                  $("#span-email").addClass('hidden');
+                  if(email.hasClass('input-alert')){
+                    email.removeClass("input-alert");
+                }
+              }
+            }
+          }
+
+
+          if(password.val() == ""){
+              $("#span-password").removeClass('hidden');
+              $("#span-password").addClass('unhide');
+              $("#password").addClass("input-alert");
+            }else{
+              if(password.val()!="" ){
+                $("#span-password").removeClass('unhide');
+                $("#span-password").addClass('hidden');
+                if(password.hasClass('input-alert')){
+                  password.removeClass("input-alert");
+              }
+            }
+          }
+
+
+  })
+});
+
+function validateEmail(email) {
+  const regexPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regexPattern.test(email);
+}
+
+
+</script>
